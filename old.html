@@ -1,599 +1,844 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<meta charset="UTF-8">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap');
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      rel="shortcut icon"
+      href="/images/Icon - Badge Lightmode.png"
+      type="image/x-icon"
+    />
+    <!-- Primary Meta -->
+    <meta
+      name="description"
+      content="A Google Sheets habit & routine tracker for entrepreneurs and freelancers. Track energy, priorities, and daily habits — with weekly analytics and 3 book summaries included."
+    />
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <!-- Open Graph (Facebook, WhatsApp, LinkedIn) -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://res.cloudinary.com/dkmddgqsl/image/upload/v1774553187/DayForge_zp3s70.png"
+    />
+    <meta
+      property="og:title"
+      content="DayForge — Build the Day. Build the Life."
+    />
+    <meta
+      property="og:description"
+      content="A Google Sheets habit & routine tracker for entrepreneurs and freelancers. Track energy, priorities, and daily habits — with weekly analytics and 3 book summaries included."
+    />
+    <meta
+      property="og:image"
+      content="https://res.cloudinary.com/dkmddgqsl/image/upload/v1774553187/DayForge_zp3s70.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-  :root {
-    --gold: #C9962A;
-    --gold-light: #F5D98A;
-    --gold-muted: #7A5C18;
-    --ink: #1A1613;
-    --ink-2: #3D3530;
-    --ink-3: #7A726D;
-    --cream: #FAF7F2;
-    --cream-2: #F0EAE0;
-    --cream-3: #E5DDD0;
-    --white: #FFFFFF;
-    --green-light: #EAF4EE;
-    --green-mid: #2D7A50;
-    --red-light: #FDEAEA;
-    --red-mid: #C0392B;
-  }
+    <!-- Twitter/X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="DayForge — Build the Day. Build the Life."
+    />
+    <meta
+      name="twitter:description"
+      content="A Google Sheets habit & routine tracker for entrepreneurs and freelancers. Track energy, priorities, and daily habits — with weekly analytics and 3 book summaries included."
+    />
+    <meta
+      name="twitter:image"
+      content="https://res.cloudinary.com/dkmddgqsl/image/upload/v1774553187/DayForge_zp3s70.png"
+    />
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--ink);
-    line-height: 1.65;
-    font-size: 15px;
-  }
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap");
 
-  /* ── HERO ── */
-  .hero {
-    background: var(--ink);
-    padding: 60px 40px 52px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at 50% -20%, rgba(201,150,42,0.18) 0%, transparent 65%);
-    pointer-events: none;
-  }
-  .badge {
-    display: inline-block;
-    background: rgba(201,150,42,0.15);
-    border: 1px solid rgba(201,150,42,0.4);
-    color: var(--gold-light);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: clamp(38px, 6vw, 58px);
-    color: var(--white);
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
-  }
-  .hero h1 span {
-    color: var(--gold);
-  }
-  .hero-sub {
-    font-size: 13px;
-    color: rgba(255,255,255,0.4);
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 22px;
-  }
-  .hero-desc {
-    font-size: 16px;
-    color: rgba(255,255,255,0.72);
-    max-width: 520px;
-    margin: 0 auto 32px;
-    line-height: 1.7;
-  }
-  .hero-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    margin-bottom: 36px;
-  }
-  .pill {
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    color: rgba(255,255,255,0.75);
-    font-size: 12px;
-    padding: 5px 14px;
-    border-radius: 20px;
-  }
-  .free-tag {
-    display: inline-block;
-    background: var(--gold);
-    color: var(--ink);
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.05em;
-    padding: 10px 28px;
-    border-radius: 4px;
-  }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-  /* ── SECTIONS ── */
-  .section {
-    padding: 52px 40px;
-    max-width: 760px;
-    margin: 0 auto;
-  }
-  .section + .section {
-    border-top: 1px solid var(--cream-3);
-  }
-  .section-label {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--gold-muted);
-    margin-bottom: 10px;
-  }
-  h2 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 26px;
-    color: var(--ink);
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-  }
-  p { color: var(--ink-2); margin-bottom: 14px; }
-  p:last-child { margin-bottom: 0; }
+      :root {
+        --gold: #c9962a;
+        --gold-light: #f5d98a;
+        --gold-muted: #7a5c18;
+        --ink: #1a1613;
+        --ink-2: #3d3530;
+        --ink-3: #7a726d;
+        --cream: #faf7f2;
+        --cream-2: #f0eae0;
+        --cream-3: #e5ddd0;
+        --white: #ffffff;
+        --green-light: #eaf4ee;
+        --green-mid: #2d7a50;
+        --red-light: #fdeaea;
+        --red-mid: #c0392b;
+      }
 
-  /* ── FEATURE GRID ── */
-  .feature-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin-top: 24px;
-  }
-  .feature-card {
-    background: var(--white);
-    border: 1px solid var(--cream-3);
-    border-radius: 10px;
-    padding: 20px;
-  }
-  .feature-icon {
-    width: 32px;
-    height: 32px;
-    background: var(--cream-2);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    margin-bottom: 12px;
-  }
-  .feature-card h3 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-  .feature-card p {
-    font-size: 13px;
-    color: var(--ink-3);
-    margin: 0;
-    line-height: 1.5;
-  }
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--cream);
+        color: var(--ink);
+        line-height: 1.65;
+        font-size: 15px;
+      }
 
-  /* ── WHAT'S INSIDE ── */
-  .inside-list {
-    list-style: none;
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .inside-list li {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    background: var(--white);
-    border: 1px solid var(--cream-3);
-    border-radius: 8px;
-    padding: 14px 16px;
-    font-size: 14px;
-    color: var(--ink-2);
-  }
-  .inside-list li .dot {
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-    border-radius: 50%;
-    background: var(--cream-2);
-    border: 1.5px solid var(--cream-3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    color: var(--gold-muted);
-    font-weight: 700;
-    margin-top: 1px;
-  }
+      /* ── HERO ── */
+      .hero {
+        background: var(--ink);
+        padding: 60px 40px 52px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 50% -20%,
+          rgba(201, 150, 42, 0.18) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .badge {
+        display: inline-block;
+        background: rgba(201, 150, 42, 0.15);
+        border: 1px solid rgba(201, 150, 42, 0.4);
+        color: var(--gold-light);
+        font-family: "DM Sans", sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 5px 14px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+      }
+      .hero h1 {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: clamp(38px, 6vw, 58px);
+        color: var(--white);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin-bottom: 8px;
+      }
+      .hero h1 span {
+        color: var(--gold);
+      }
+      .hero-sub {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.4);
+        font-weight: 400;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 22px;
+      }
+      .hero-desc {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.72);
+        max-width: 520px;
+        margin: 0 auto 32px;
+        line-height: 1.7;
+      }
+      .hero-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 36px;
+      }
+      .pill {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 12px;
+        padding: 5px 14px;
+        border-radius: 20px;
+      }
+      .free-tag {
+        display: inline-block;
+        background: var(--gold);
+        color: var(--ink);
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        padding: 10px 28px;
+        border-radius: 4px;
+      }
 
-  /* ── HOW TO USE ── */
-  .steps {
-    margin-top: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .step {
-    display: flex;
-    gap: 20px;
-    position: relative;
-  }
-  .step:not(:last-child)::before {
-    content: '';
-    position: absolute;
-    left: 15px;
-    top: 36px;
-    bottom: -8px;
-    width: 1px;
-    background: var(--cream-3);
-  }
-  .step-num {
-    width: 32px;
-    height: 32px;
-    min-width: 32px;
-    background: var(--ink);
-    color: var(--gold-light);
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    font-size: 13px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1;
-  }
-  .step-body {
-    padding-bottom: 28px;
-    flex: 1;
-  }
-  .step-body h3 {
-    font-family: 'Syne', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    color: var(--ink);
-    margin-bottom: 5px;
-    margin-top: 4px;
-  }
-  .step-body p {
-    font-size: 13.5px;
-    color: var(--ink-3);
-    margin: 0;
-  }
-  .step-body .tip {
-    display: inline-block;
-    background: var(--cream-2);
-    border: 1px solid var(--cream-3);
-    border-radius: 5px;
-    font-size: 12px;
-    color: var(--ink-3);
-    padding: 4px 10px;
-    margin-top: 8px;
-  }
+      /* ── SECTIONS ── */
+      .section {
+        padding: 52px 40px;
+        max-width: 760px;
+        margin: 0 auto;
+      }
+      .section + .section {
+        border-top: 1px solid var(--cream-3);
+      }
+      .section-label {
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold-muted);
+        margin-bottom: 10px;
+      }
+      h2 {
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 26px;
+        color: var(--ink);
+        margin-bottom: 16px;
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+      }
+      p {
+        color: var(--ink-2);
+        margin-bottom: 14px;
+      }
+      p:last-child {
+        margin-bottom: 0;
+      }
 
-  /* ── SCORE TABLE ── */
-  .score-explain {
-    margin-top: 20px;
-    background: var(--white);
-    border: 1px solid var(--cream-3);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .score-explain table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-  .score-explain th {
-    background: var(--ink);
-    color: rgba(255,255,255,0.7);
-    font-weight: 500;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 10px 16px;
-    text-align: left;
-  }
-  .score-explain td {
-    padding: 10px 16px;
-    border-bottom: 1px solid var(--cream-2);
-    color: var(--ink-2);
-  }
-  .score-explain tr:last-child td { border-bottom: none; }
-  .score-explain tr:nth-child(even) td { background: var(--cream); }
+      /* ── FEATURE GRID ── */
+      .feature-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 24px;
+      }
+      .feature-card {
+        background: var(--white);
+        border: 1px solid var(--cream-3);
+        border-radius: 10px;
+        padding: 20px;
+      }
+      .feature-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--cream-2);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        margin-bottom: 12px;
+      }
+      .feature-card h3 {
+        font-family: "Syne", sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--ink);
+        margin-bottom: 6px;
+      }
+      .feature-card p {
+        font-size: 13px;
+        color: var(--ink-3);
+        margin: 0;
+        line-height: 1.5;
+      }
 
-  /* ── STATUS LEGEND ── */
-  .legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 16px;
-  }
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 13px;
-    color: var(--ink-2);
-  }
-  .status-dot {
-    width: 22px;
-    height: 22px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 11px;
-    font-weight: 700;
-  }
-  .s-done { background: var(--green-light); color: var(--green-mid); }
-  .s-break { background: #FFF3CD; color: #7A5C18; }
-  .s-sick  { background: #FFF3CD; color: #8B5E3C; }
-  .s-miss  { background: var(--red-light); color: var(--red-mid); }
+      /* ── WHAT'S INSIDE ── */
+      .inside-list {
+        list-style: none;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .inside-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        background: var(--white);
+        border: 1px solid var(--cream-3);
+        border-radius: 8px;
+        padding: 14px 16px;
+        font-size: 14px;
+        color: var(--ink-2);
+      }
+      .inside-list li .dot {
+        width: 20px;
+        height: 20px;
+        min-width: 20px;
+        border-radius: 50%;
+        background: var(--cream-2);
+        border: 1.5px solid var(--cream-3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: var(--gold-muted);
+        font-weight: 700;
+        margin-top: 1px;
+      }
 
-  /* ── BOOK RESOURCES ── */
-  .books {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-top: 20px;
-  }
-  .book-row {
-    background: var(--white);
-    border: 1px solid var(--cream-3);
-    border-radius: 8px;
-    padding: 14px 16px;
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-  }
-  .book-spine {
-    width: 6px;
-    min-width: 6px;
-    height: 50px;
-    border-radius: 3px;
-  }
-  .b1 { background: #C9962A; }
-  .b2 { background: #2D7A50; }
-  .b3 { background: #2B5FA3; }
-  .book-info h4 {
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--ink);
-    margin-bottom: 3px;
-  }
-  .book-info p {
-    font-size: 12.5px;
-    color: var(--ink-3);
-    margin: 0;
-  }
+      /* ── HOW TO USE ── */
+      .steps {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .step {
+        display: flex;
+        gap: 20px;
+        position: relative;
+      }
+      .step:not(:last-child)::before {
+        content: "";
+        position: absolute;
+        left: 15px;
+        top: 36px;
+        bottom: -8px;
+        width: 1px;
+        background: var(--cream-3);
+      }
+      .step-num {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        background: var(--ink);
+        color: var(--gold-light);
+        font-family: "Syne", sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+      }
+      .step-body {
+        padding-bottom: 28px;
+        flex: 1;
+      }
+      .step-body h3 {
+        font-family: "Syne", sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        color: var(--ink);
+        margin-bottom: 5px;
+        margin-top: 4px;
+      }
+      .step-body p {
+        font-size: 13.5px;
+        color: var(--ink-3);
+        margin: 0;
+      }
+      .step-body .tip {
+        display: inline-block;
+        background: var(--cream-2);
+        border: 1px solid var(--cream-3);
+        border-radius: 5px;
+        font-size: 12px;
+        color: var(--ink-3);
+        padding: 4px 10px;
+        margin-top: 8px;
+      }
 
-  /* ── QUOTE BLOCK ── */
-  .quote-block {
-    border-left: 3px solid var(--gold);
-    padding: 16px 20px;
-    background: var(--white);
-    border-radius: 0 8px 8px 0;
-    margin-top: 24px;
-    font-style: italic;
-    font-size: 15px;
-    color: var(--ink-2);
-  }
-  .quote-block cite {
-    display: block;
-    font-size: 12px;
-    font-style: normal;
-    color: var(--ink-3);
-    margin-top: 8px;
-  }
+      /* ── SCORE TABLE ── */
+      .score-explain {
+        margin-top: 20px;
+        background: var(--white);
+        border: 1px solid var(--cream-3);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .score-explain table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      .score-explain th {
+        background: var(--ink);
+        color: rgba(255, 255, 255, 0.7);
+        font-weight: 500;
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 10px 16px;
+        text-align: left;
+      }
+      .score-explain td {
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--cream-2);
+        color: var(--ink-2);
+      }
+      .score-explain tr:last-child td {
+        border-bottom: none;
+      }
+      .score-explain tr:nth-child(even) td {
+        background: var(--cream);
+      }
 
-  /* ── FOOTER ── */
-  .footer {
-    background: var(--ink);
-    padding: 32px 40px;
-    text-align: center;
-  }
-  .footer p {
-    color: rgba(255,255,255,0.4);
-    font-size: 13px;
-    margin: 0;
-  }
-  .footer strong {
-    color: var(--gold);
-    font-family: 'Syne', sans-serif;
-  }
+      /* ── STATUS LEGEND ── */
+      .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        font-size: 13px;
+        color: var(--ink-2);
+      }
+      .status-dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .s-done {
+        background: var(--green-light);
+        color: var(--green-mid);
+      }
+      .s-break {
+        background: #fff3cd;
+        color: #7a5c18;
+      }
+      .s-sick {
+        background: #fff3cd;
+        color: #8b5e3c;
+      }
+      .s-miss {
+        background: var(--red-light);
+        color: var(--red-mid);
+      }
 
-  @media (max-width: 600px) {
-    .feature-grid { grid-template-columns: 1fr; }
-    .hero, .section { padding-left: 20px; padding-right: 20px; }
-    .footer { padding: 24px 20px; }
-  }
-</style>
-</head>
-<body>
+      /* ── BOOK RESOURCES ── */
+      .books {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .book-row {
+        background: var(--white);
+        border: 1px solid var(--cream-3);
+        border-radius: 8px;
+        padding: 14px 16px;
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .book-spine {
+        width: 6px;
+        min-width: 6px;
+        height: 50px;
+        border-radius: 3px;
+      }
+      .b1 {
+        background: #c9962a;
+      }
+      .b2 {
+        background: #2d7a50;
+      }
+      .b3 {
+        background: #2b5fa3;
+      }
+      .book-info h4 {
+        font-family: "Syne", sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 3px;
+      }
+      .book-info p {
+        font-size: 12.5px;
+        color: var(--ink-3);
+        margin: 0;
+      }
 
-<!-- HERO -->
-<div class="hero">
-  <div class="badge">Free productivity tool</div>
-  <h1><span>Day</span>Forge</h1>
-  <div class="hero-sub">Build the day. Build the life.</div>
-  <p class="hero-desc">A free Google Sheets system that tracks your energy, habits, and top priorities — then gives you the data to improve every single week.</p>
-  <div class="hero-pills">
-    <span class="pill">Daily habit tracker</span>
-    <span class="pill">Weekly analytics</span>
-    <span class="pill">Energy scoring</span>
-    <span class="pill">Book resources</span>
-    <span class="pill">100% free</span>
-  </div>
-  <span class="free-tag">FREE — No cost, no catch</span>
-</div>
+      /* ── QUOTE BLOCK ── */
+      .quote-block {
+        border-left: 3px solid var(--gold);
+        padding: 16px 20px;
+        background: var(--white);
+        border-radius: 0 8px 8px 0;
+        margin-top: 24px;
+        font-style: italic;
+        font-size: 15px;
+        color: var(--ink-2);
+      }
+      .quote-block cite {
+        display: block;
+        font-size: 12px;
+        font-style: normal;
+        color: var(--ink-3);
+        margin-top: 8px;
+      }
 
-<!-- PRODUCT DESCRIPTION -->
-<div class="section">
-  <div class="section-label">What is DayForge?</div>
-  <h2>Stop guessing. Start forging.</h2>
-  <p>Most people drift through their days reacting to everything around them. DayForge flips that. It's a battle-tested Google Sheets system built for entrepreneurs and freelancers who want to take back control of their time, energy, and output.</p>
-  <p>Every morning you open it and ask: <em>What are my top 3 priorities today?</em> Every evening, the numbers tell you exactly how your day went — not based on feelings, but on data. Over weeks, patterns emerge. You stop repeating your worst days. You start recreating your best ones.</p>
-  <p>It's not magic. It's a system — the kind that quietly compounds over time into something extraordinary.</p>
+      /* ── FOOTER ── */
+      .footer {
+        background: var(--ink);
+        padding: 32px 40px;
+        text-align: center;
+      }
+      .footer p {
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 13px;
+        margin: 0;
+      }
+      .footer strong {
+        color: var(--gold);
+        font-family: "Syne", sans-serif;
+      }
 
-  <div class="feature-grid">
-    <div class="feature-card">
-      <div class="feature-icon">⚡</div>
-      <h3>Energy tracking</h3>
-      <p>Rate your energy from 1–10 daily. Identify when you peak and schedule deep work around it.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎯</div>
-      <h3>Top 3 priorities</h3>
-      <p>Forced focus on what actually moves the needle. Not 20 tasks — just the 3 that matter most.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">✅</div>
-      <h3>Daily routine log</h3>
-      <p>Track your non-negotiable habits — prayer, workout, reading, content creation, and more.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📊</div>
-      <h3>Weekly analytics</h3>
-      <p>See your best day, worst day, completion rate, average score, and average energy at a glance.</p>
-    </div>
-  </div>
-</div>
-
-<!-- WHAT'S INSIDE -->
-<div class="section">
-  <div class="section-label">What's included</div>
-  <h2>Everything in the system</h2>
-
-  <ul class="inside-list">
-    <li><span class="dot">1</span>Daily habit tracker sheet — date, energy rating, top 3 tasks, and 12 routine columns with automatic scoring</li>
-    <li><span class="dot">2</span>Weekly analytics table — total completions, average energy, average score, best day, worst day, and completion %</li>
-    <li><span class="dot">3</span>Formula guide sheet — every formula explained so you can customise the system to your own routine</li>
-    <li><span class="dot">4</span>Written book summaries — <em>Eat the Frog</em>, <em>Atomic Habits</em>, and <em>The Miracle Morning</em></li>
-    <li><span class="dot">5</span>Audio book summaries — listen during commutes, gym sessions, or morning routines</li>
-  </ul>
-
-  <div class="books">
-    <div class="book-row"><div class="book-spine b1"></div><div class="book-info"><h4>Eat the Frog — Brian Tracy</h4><p>Why doing your hardest task first changes everything about your productivity.</p></div></div>
-    <div class="book-row"><div class="book-spine b2"></div><div class="book-info"><h4>Atomic Habits — James Clear</h4><p>The science of tiny changes that compound into remarkable results over time.</p></div></div>
-    <div class="book-row"><div class="book-spine b3"></div><div class="book-info"><h4>The Miracle Morning — Hal Elrod</h4><p>How your first hour each morning sets the trajectory for your entire day.</p></div></div>
-  </div>
-</div>
-
-<!-- HOW TO USE -->
-<div class="section">
-  <div class="section-label">How to use guide</div>
-  <h2>Up and running in 5 minutes</h2>
-
-  <div class="steps">
-
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-body">
-        <h3>Make a copy of the sheet</h3>
-        <p>Open the Google Sheets link and go to <strong>File → Make a copy</strong>. This saves it to your own Google Drive so only you can edit it. Never work directly on the shared link.</p>
-        <span class="tip">Rename it something memorable — e.g. "DayForge 2026"</span>
+      @media (max-width: 600px) {
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+        .hero,
+        .section {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .footer {
+          padding: 24px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="badge">Free productivity tool</div>
+      <h1><span>Day</span>Forge</h1>
+      <div class="hero-sub">Build the day. Build the life.</div>
+      <p class="hero-desc">
+        A free Google Sheets system that tracks your energy, habits, and top
+        priorities — then gives you the data to improve every single week.
+      </p>
+      <div class="hero-pills">
+        <span class="pill">Daily habit tracker</span>
+        <span class="pill">Weekly analytics</span>
+        <span class="pill">Energy scoring</span>
+        <span class="pill">Book resources</span>
+        <span class="pill">100% free</span>
       </div>
+      <span class="free-tag">FREE — No cost, no catch</span>
     </div>
 
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-body">
-        <h3>Fill in today's row</h3>
-        <p>Go to the main tracker tab. The columns are already labelled. Start with Column A (today's date), then Column B (your energy — how do you feel right now, out of 10?), then Columns C, D, and E — your top 3 most important tasks for today.</p>
-        <span class="tip">Be honest with the energy rating. Over time, the pattern will surprise you.</span>
-      </div>
-    </div>
+    <!-- PRODUCT DESCRIPTION -->
+    <div class="section">
+      <div class="section-label">What is DayForge?</div>
+      <h2>Stop guessing. Start forging.</h2>
+      <p>
+        Most people drift through their days reacting to everything around them.
+        DayForge flips that. It's a battle-tested Google Sheets system built for
+        entrepreneurs and freelancers who want to take back control of their
+        time, energy, and output.
+      </p>
+      <p>
+        Every morning you open it and ask:
+        <em>What are my top 3 priorities today?</em> Every evening, the numbers
+        tell you exactly how your day went — not based on feelings, but on data.
+        Over weeks, patterns emerge. You stop repeating your worst days. You
+        start recreating your best ones.
+      </p>
+      <p>
+        It's not magic. It's a system — the kind that quietly compounds over
+        time into something extraordinary.
+      </p>
 
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-body">
-        <h3>Track your routines (Columns F–Q)</h3>
-        <p>Each column from F to Q represents one daily habit or routine. At the end of each day, mark each one with the dropdown:</p>
-
-        <div class="legend" style="margin-top: 10px; margin-bottom: 4px;">
-          <div class="legend-item"><div class="status-dot s-done">✓</div> Done</div>
-          <div class="legend-item"><div class="status-dot s-break">B</div> Break day</div>
-          <div class="legend-item"><div class="status-dot s-sick">S</div> Sick</div>
-          <div class="legend-item"><div class="status-dot s-miss">✕</div> Missed</div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Energy tracking</h3>
+          <p>
+            Rate your energy from 1–10 daily. Identify when you peak and
+            schedule deep work around it.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎯</div>
+          <h3>Top 3 priorities</h3>
+          <p>
+            Forced focus on what actually moves the needle. Not 20 tasks — just
+            the 3 that matter most.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">✅</div>
+          <h3>Daily routine log</h3>
+          <p>
+            Track your non-negotiable habits — prayer, workout, reading, content
+            creation, and more.
+          </p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Weekly analytics</h3>
+          <p>
+            See your best day, worst day, completion rate, average score, and
+            average energy at a glance.
+          </p>
         </div>
       </div>
     </div>
 
-    <div class="step">
-      <div class="step-num">4</div>
-      <div class="step-body">
-        <h3>Check your daily score (Column R)</h3>
-        <p>Column R automatically calculates your score for the day — it counts the number of routines you completed. The formula is already in the sheet. No manual input needed.</p>
-        <div class="score-explain">
-          <table>
-            <tr><th>Score</th><th>What it means</th></tr>
-            <tr><td>10 – 12</td><td>Exceptional day — you showed up fully</td></tr>
-            <tr><td>7 – 9</td><td>Solid day — strong consistency</td></tr>
-            <tr><td>4 – 6</td><td>Average day — room to grow</td></tr>
-            <tr><td>0 – 3</td><td>Rough day — note what got in the way</td></tr>
-          </table>
+    <!-- WHAT'S INSIDE -->
+    <div class="section">
+      <div class="section-label">What's included</div>
+      <h2>Everything in the system</h2>
+
+      <ul class="inside-list">
+        <li>
+          <span class="dot">1</span>Daily habit tracker sheet — date, energy
+          rating, top 3 tasks, and 12 routine columns with automatic scoring
+        </li>
+        <li>
+          <span class="dot">2</span>Weekly analytics table — total completions,
+          average energy, average score, best day, worst day, and completion %
+        </li>
+        <li>
+          <span class="dot">3</span>Formula guide sheet — every formula
+          explained so you can customise the system to your own routine
+        </li>
+        <li>
+          <span class="dot">4</span>Written book summaries —
+          <em>Eat the Frog</em>, <em>Atomic Habits</em>, and
+          <em>The Miracle Morning</em>
+        </li>
+        <li>
+          <span class="dot">5</span>Audio book summaries — listen during
+          commutes, gym sessions, or morning routines
+        </li>
+      </ul>
+
+      <div class="books">
+        <div class="book-row">
+          <div class="book-spine b1"></div>
+          <div class="book-info">
+            <h4>Eat the Frog — Brian Tracy</h4>
+            <p>
+              Why doing your hardest task first changes everything about your
+              productivity.
+            </p>
+          </div>
+        </div>
+        <div class="book-row">
+          <div class="book-spine b2"></div>
+          <div class="book-info">
+            <h4>Atomic Habits — James Clear</h4>
+            <p>
+              The science of tiny changes that compound into remarkable results
+              over time.
+            </p>
+          </div>
+        </div>
+        <div class="book-row">
+          <div class="book-spine b3"></div>
+          <div class="book-info">
+            <h4>The Miracle Morning — Hal Elrod</h4>
+            <p>
+              How your first hour each morning sets the trajectory for your
+              entire day.
+            </p>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="step">
-      <div class="step-num">5</div>
-      <div class="step-body">
-        <h3>Review your weekly analytics</h3>
-        <p>At the end of each week, check the Analytics table (on the right side of the sheet). It shows your best day, worst day, average score, average energy level, and overall completion percentage for the week.</p>
-        <span class="tip">Ask yourself: what made my best day different? Do more of that.</span>
+    <!-- HOW TO USE -->
+    <div class="section">
+      <div class="section-label">How to use guide</div>
+      <h2>Up and running in 5 minutes</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Make a copy of the sheet</h3>
+            <p>
+              Open the Google Sheets link and go to
+              <strong>File → Make a copy</strong>. This saves it to your own
+              Google Drive so only you can edit it. Never work directly on the
+              shared link.
+            </p>
+            <span class="tip"
+              >Rename it something memorable — e.g. "DayForge 2026"</span
+            >
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Fill in today's row</h3>
+            <p>
+              Go to the main tracker tab. The columns are already labelled.
+              Start with Column A (today's date), then Column B (your energy —
+              how do you feel right now, out of 10?), then Columns C, D, and E —
+              your top 3 most important tasks for today.
+            </p>
+            <span class="tip"
+              >Be honest with the energy rating. Over time, the pattern will
+              surprise you.</span
+            >
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Track your routines (Columns F–Q)</h3>
+            <p>
+              Each column from F to Q represents one daily habit or routine. At
+              the end of each day, mark each one with the dropdown:
+            </p>
+
+            <div class="legend" style="margin-top: 10px; margin-bottom: 4px">
+              <div class="legend-item">
+                <div class="status-dot s-done">✓</div>
+                Done
+              </div>
+              <div class="legend-item">
+                <div class="status-dot s-break">B</div>
+                Break day
+              </div>
+              <div class="legend-item">
+                <div class="status-dot s-sick">S</div>
+                Sick
+              </div>
+              <div class="legend-item">
+                <div class="status-dot s-miss">✕</div>
+                Missed
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Check your daily score (Column R)</h3>
+            <p>
+              Column R automatically calculates your score for the day — it
+              counts the number of routines you completed. The formula is
+              already in the sheet. No manual input needed.
+            </p>
+            <div class="score-explain">
+              <table>
+                <tr>
+                  <th>Score</th>
+                  <th>What it means</th>
+                </tr>
+                <tr>
+                  <td>10 – 12</td>
+                  <td>Exceptional day — you showed up fully</td>
+                </tr>
+                <tr>
+                  <td>7 – 9</td>
+                  <td>Solid day — strong consistency</td>
+                </tr>
+                <tr>
+                  <td>4 – 6</td>
+                  <td>Average day — room to grow</td>
+                </tr>
+                <tr>
+                  <td>0 – 3</td>
+                  <td>Rough day — note what got in the way</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-body">
+            <h3>Review your weekly analytics</h3>
+            <p>
+              At the end of each week, check the Analytics table (on the right
+              side of the sheet). It shows your best day, worst day, average
+              score, average energy level, and overall completion percentage for
+              the week.
+            </p>
+            <span class="tip"
+              >Ask yourself: what made my best day different? Do more of
+              that.</span
+            >
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">6</div>
+          <div class="step-body">
+            <h3>Read (or listen to) the book summaries</h3>
+            <p>
+              The book resources are included in the same folder. Start with
+              <em>Eat the Frog</em> if you struggle with procrastination. Start
+              with <em>Atomic Habits</em> if you want to understand why the
+              system works. Start with <em>The Miracle Morning</em> if your
+              mornings feel chaotic.
+            </p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">7</div>
+          <div class="step-body">
+            <h3>Customise to fit your life</h3>
+            <p>
+              The Formula Guide tab explains every formula in plain language so
+              you can add new habit columns, rename existing ones, or extend the
+              tracker to suit your specific routine. No advanced spreadsheet
+              skills required.
+            </p>
+            <span class="tip"
+              >Not sure what habits to track? Start with sleep, exercise,
+              prayer/meditation, and deep work.</span
+            >
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="step">
-      <div class="step-num">6</div>
-      <div class="step-body">
-        <h3>Read (or listen to) the book summaries</h3>
-        <p>The book resources are included in the same folder. Start with <em>Eat the Frog</em> if you struggle with procrastination. Start with <em>Atomic Habits</em> if you want to understand why the system works. Start with <em>The Miracle Morning</em> if your mornings feel chaotic.</p>
+    <!-- PHILOSOPHY -->
+    <div class="section">
+      <div class="section-label">The philosophy behind it</div>
+      <h2>Small wins. Compounded daily.</h2>
+      <p>
+        DayForge is built on a simple idea borrowed from the three books
+        included in this system: your daily habits, done consistently, are more
+        powerful than any single big effort. You don't need perfect days. You
+        need more good days than bad ones.
+      </p>
+      <p>
+        This tool doesn't replace discipline — it makes discipline easier to
+        see, measure, and repeat. When you can see your own data, you become
+        your own best coach.
+      </p>
+
+      <div class="quote-block">
+        "You do not rise to the level of your goals. You fall to the level of
+        your systems."
+        <cite>— James Clear, Atomic Habits</cite>
       </div>
     </div>
 
-    <div class="step">
-      <div class="step-num">7</div>
-      <div class="step-body">
-        <h3>Customise to fit your life</h3>
-        <p>The Formula Guide tab explains every formula in plain language so you can add new habit columns, rename existing ones, or extend the tracker to suit your specific routine. No advanced spreadsheet skills required.</p>
-        <span class="tip">Not sure what habits to track? Start with sleep, exercise, prayer/meditation, and deep work.</span>
-      </div>
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>
+        Shared freely by the creator of <strong>DayForge</strong>. No login. No
+        paywall. No catch.<br />Built for builders who are serious about the
+        life they're building.
+      </p>
     </div>
-
-  </div>
-</div>
-
-<!-- PHILOSOPHY -->
-<div class="section">
-  <div class="section-label">The philosophy behind it</div>
-  <h2>Small wins. Compounded daily.</h2>
-  <p>DayForge is built on a simple idea borrowed from the three books included in this system: your daily habits, done consistently, are more powerful than any single big effort. You don't need perfect days. You need more good days than bad ones.</p>
-  <p>This tool doesn't replace discipline — it makes discipline easier to see, measure, and repeat. When you can see your own data, you become your own best coach.</p>
-
-  <div class="quote-block">
-    "You do not rise to the level of your goals. You fall to the level of your systems."
-    <cite>— James Clear, Atomic Habits</cite>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<div class="footer">
-  <p>Shared freely by the creator of <strong>DayForge</strong>. No login. No paywall. No catch.<br>Built for builders who are serious about the life they're building.</p>
-</div>
-
-</body>
+  </body>
 </html>
